@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: warnock-pro, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+            background: #fcdfe6;
+            color: #571a0e;
+            line-height: 1.7;
+            padding: 120px 40px 140px;
+            font-size: 16px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 400;
+            color: #571a0e;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+        }
+
+        .subheading {
+            font-size: 1.05rem;
+            color: #571a0e;
+            margin-bottom: 100px;
+            font-weight: 400;
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        .question {
+            font-size: 1.15rem;
+            color: #571a0e;
+            padding: 12px 0;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 400;
+            display: flex;
+            gap: 12px;
+        }
+
+        .question-number {
+            color: #571a0e;
+            opacity: 0.7;
+            font-size: 0.9rem;
+            min-width: 32px;
+            font-style: italic;
+            flex-shrink: 0;
+        }
+
+        .question-text {
+            flex: 1;
+        }
+
+        .question.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 70px 20px 100px;
+            }
+
+            h1 {
+                font-size: 2.25rem;
+            }
+
+            .subheading {
+                font-size: 1rem;
+                margin-bottom: 60px;
+            }
+
+            .question {
+                font-size: 1rem;
+                padding: 20px 0;
+                gap: 16px;
+            }
+
+            .question-number {
+                font-size: 0.85rem;
+                min-width: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Questions</h1>
+        <p class="subheading">This isn't a site of answers. It's a playground of questions.</p>
+
+        <div class="question"><span class="question-number">1.</span><span class="question-text">What would you do if you knew you couldn't fail?</span></div>
+        <div class="question"><span class="question-number">2.</span><span class="question-text">When was the last time you did something for the first time?</span></div>
+        <div class="question"><span class="question-number">3.</span><span class="question-text">What are you pretending not to know?</span></div>
+        <div class="question"><span class="question-number">4.</span><span class="question-text">If your life was a book, would anyone want to read it?</span></div>
+        <div class="question"><span class="question-number">5.</span><span class="question-text">What advice would you give to your younger self?</span></div>
+        <div class="question"><span class="question-number">6.</span><span class="question-text">What would you do differently if nobody was watching?</span></div>
+        <div class="question"><span class="question-number">7.</span><span class="question-text">What truth are you avoiding?</span></div>
+        <div class="question"><span class="question-number">8.</span><span class="question-text">How do you want to be remembered?</span></div>
+        <div class="question"><span class="question-number">9.</span><span class="question-text">What would make today meaningful?</span></div>
+        <div class="question"><span class="question-number">10.</span><span class="question-text">What are you optimizing your life for?</span></div>
+        <div class="question"><span class="question-number">11.</span><span class="question-text">What conversation have you been avoiding?</span></div>
+        <div class="question"><span class="question-number">12.</span><span class="question-text">If you could tell your future self one thing, what would it be?</span></div>
+        <div class="question"><span class="question-number">13.</span><span class="question-text">What small thing could you do today that your future self would thank you for?</span></div>
+        <div class="question"><span class="question-number">14.</span><span class="question-text">What makes you come alive?</span></div>
+        <div class="question"><span class="question-number">15.</span><span class="question-text">What belief are you holding onto that no longer serves you?</span></div>
+        <div class="question"><span class="question-number">16.</span><span class="question-text">What would love do?</span></div>
+        <div class="question"><span class="question-number">17.</span><span class="question-text">If money wasn't a concern, how would you spend your time?</span></div>
+        <div class="question"><span class="question-number">18.</span><span class="question-text">What are you grateful for that you didn't expect?</span></div>
+        <div class="question"><span class="question-number">19.</span><span class="question-text">What question should you be asking yourself?</span></div>
+        <div class="question"><span class="question-number">20.</span><span class="question-text">What matters most?</span></div>
+    </div>
+
+    <script>
+        const questions = document.querySelectorAll('.question');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 40);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        questions.forEach(question => {
+            observer.observe(question);
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            questions.forEach((question, index) => {
+                const rect = question.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    setTimeout(() => {
+                        question.classList.add('visible');
+                    }, index * 40);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
