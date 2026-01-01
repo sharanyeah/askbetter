@@ -16,13 +16,19 @@
             background: #f5f5f7;
             color: #1d1d1f;
             min-height: 100vh;
-            padding: 60px 20px;
+            padding: 60px 120px;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .container {
-            max-width: 720px;
+            max-width: 900px;
             margin: 0 auto;
+            position: relative;
+            width: 100%;
         }
 
         header {
@@ -65,18 +71,20 @@
             counter-increment: question;
             content: counter(question);
             position: absolute;
-            left: -80px;
+            right: calc(100% + 40px);
             top: 50%;
             transform: translateY(-50%);
             font-size: 6rem;
             font-weight: 200;
             color: rgba(29, 29, 31, 0.04);
             transition: all 0.5s ease;
+            text-align: right;
+            min-width: 120px;
         }
 
         .question-card:hover::before {
             color: rgba(29, 29, 31, 0.15);
-            left: -100px;
+            right: calc(100% + 60px);
         }
 
         .question-card:hover .question-text {
@@ -133,7 +141,31 @@
 
         @media (max-width: 768px) {
             body {
-                padding: 60px 20px;
+                padding: 60px 40px;
+            }
+
+            .container {
+                padding-left: 0;
+                max-width: 100%;
+                padding-right: 0;
+            }
+
+            header {
+                padding-left: 80px;
+            }
+
+            .questions-grid {
+                padding-left: 80px;
+            }
+
+            .question-card::before {
+                right: calc(100% + 20px);
+                min-width: 60px;
+                font-size: 4rem;
+            }
+
+            .question-card:hover::before {
+                right: calc(100% + 30px);
             }
 
             h1 {
@@ -142,23 +174,6 @@
 
             .subheading {
                 font-size: 1.125rem;
-            }
-
-            .question-card {
-                margin: 48px 0;
-            }
-
-            .question-card::before {
-                font-size: 6rem;
-                left: -80px;
-            }
-
-            .question-card:hover::before {
-                left: -100px;
-            }
-
-            .question-text {
-                font-size: 1.5rem;
             }
         }
     </style>
